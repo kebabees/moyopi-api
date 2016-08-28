@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 
   if(req.query.event_id){
     outputObj = myGlobal.events.filter(function(event) {
-      if(event.eventId == req.query.event_id){
+      if(event.event_id == req.query.event_id){
         return true;
       };
       return false
@@ -39,13 +39,13 @@ router.post('/', function(req, res, next) {
   console.log("-------------------req body end");
 
   inputObj = {
-    eventId      : req.body.event_id,
-    eventName    : req.body.event_name,
-    eventDate    : req.body.event_date,
-    eventPlace   : req.body.event_place,
-    eventCapacity: req.body.event_capacity,
-    eventFee     : req.body.event_fee,
-    createdBy    : req.body.created_by
+    event_id      : req.body.event_id,
+    event_name    : req.body.event_name,
+    event_date    : req.body.event_date,
+    event_place   : req.body.event_place,
+    event_capacity: req.body.event_capacity,
+    event_fee     : req.body.event_fee,
+    created_by    : req.body.created_by
   };
 
   myGlobal.events.push(inputObj);
