@@ -38,20 +38,32 @@ router.post('/', function(req, res, next) {
   console.log(req.body);
   console.log("-------------------req body end");
 
-  inputObj = {
-    event_id      : myGlobal.events.length + 1,
-    event_name    : req.body.event_name,
-    event_date    : req.body.event_date,
-    event_place   : req.body.event_place,
-    event_capacity: req.body.event_capacity,
-    event_fee     : req.body.event_fee,
-    created_by    : req.body.created_by
-  };
 
-  myGlobal.events.push(inputObj);
+  if( req.body.event_name
+    && req.body.event_date
+    && req.body.event_place
+    && req.body.event_capacity
+    && req.body.event_fee
+    && req.body.created_by
+  ){
+    inputObj = {
+      event_id      : myGlobal.events.length + 1,
+      event_name    : req.body.event_name,
+      event_date    : req.body.event_date,
+      event_place   : req.body.event_place,
+      event_capacity: req.body.event_capacity,
+      event_fee     : req.body.event_fee,
+      created_by    : req.body.created_by
+    };
 
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify(inputObj));
+    myGlobal.events.push(inputObj);
+
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(inputObj));
+  } else {
+    res.writeHead(400, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({error_id: 1, error_message: "check form data!!"}));
+  }
 });
 
 module.exports = router;
