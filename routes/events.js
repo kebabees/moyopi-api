@@ -39,7 +39,7 @@ router.post('/', function(req, res, next) {
   console.log("-------------------req body end");
 
   inputObj = {
-    event_id      : req.body.event_id,
+    event_id      : myGlobal.events.length + 1,
     event_name    : req.body.event_name,
     event_date    : req.body.event_date,
     event_place   : req.body.event_place,
